@@ -1,0 +1,30 @@
+<html ng-app>
+<head>
+
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+</head>
+
+    <%- include('header.ejs') %>    
+    <div class= "container" id="idea-form" >
+    <h1>Edit <%= startupidea.name%></h1>
+    <form class="col-md-12" action='/startupidea/edit/<%=startupidea._id%>' method ='post'>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="What industry does it belong to" name='industry' >
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Tell us a little bit about your project" name='info'>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Keywords?" name ='keywords'>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg btn-block" >Edit the idea</button>
+        </div>
+    </form>
+    <div>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+
+    <!-- JS -->
+    <script src="../libs/angular/angular.min.js"></script>
+    <script src="../libs/angular-route/angular-route.min.js"></script>
+</head>
+
+    <%- include('header.ejs') %>
+
+
+<main role="main">
+  <div class="container">
+        <%if (user.username === startupidea.username) {%>
+        <div class="row">
+          <div class="span3 offset 2">Created: <%= startupidea.created_at%> by: <%= user.username%></div>
+        </div>
+
+      <div class="pull-right">
+    <a class="btn btn-primary" href="/startupidea/edit/<%=startupidea._id%>">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <form action='http://localhost:3000/startupidea/delete/<%=startupidea._id%>' method = 'post' role='form'>
+    <button type="submit" class="btn btn-primary">
+      <i class="glyphicon glyphicon-trash"></i>
+    </form>
+  </div>
+     <% }%>
+
+    <% if (startupidea){%>
+      <h1><%= startupidea.name %></h1>
+      <h4>Description:</h4>
+      <h3><%= startupidea.info %></h3>
+
+        <div class="span8"><%=startupidea.keywords%></div>
+
+    <% }%>
+
+  </main>
+</div>
+
+</html>

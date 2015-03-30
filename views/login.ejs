@@ -1,0 +1,26 @@
+<html ng-app>
+<head>
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+</head>
+
+    <%- include('header.ejs') %>    
+
+    <div class= "container" id="login-form" >
+    <form class="col-md-12" action='/login' method='post'>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Username" name='username'>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control input-lg" placeholder="Password" name='password'>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg btn-block">Login In</button>
+        </div>
+    </form>
+    <div>
+</html>

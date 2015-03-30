@@ -1,0 +1,62 @@
+<html>
+<head>
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="libs/font-awesome/css/font-awesome.css">
+
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/Chart.js/Chart.min.js"></script>
+    <script src="javascripts/voting.js"></script>
+    <script src="javascripts/sharting.js"></script>
+  <!-- Chartjs implementation -->
+    <script>
+    function isIn(arr, element){
+      for(var i =0;i<arr.length;i++){
+        if (arr[i].label === element){
+          return i
+        }
+      }
+      return -1;
+    }
+
+    function populatePieData(pieData, data){
+      var newColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+      //push the first element
+      pieData.push({value:1,label: data[0].industry, color: newColor});
+      for (var i = data.length - 1; i >= 1; i--) {
+      var newColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+      if (isIn(pieData,data[i].industry)==-1){
+          //if the element is not in pieData then added
+          pieData.push({value:1,label: data[i].industry, color: newColor});
+        }else{
+          //if it is get the place where it was and increment the value
+
+          pieData[isIn(pieData, data[i].industry)].value ++;
+        }
+      }
+    }
+
+    $(document).ready(function() {
+      //lets create a function that checks to see if a value is in arr
+      var data = <%-JSON.stringify(data)%>
+      pieData = [];
+
+      populatePieData(pieData,data);
+      var context = document.getElementById('top').getContext('2d');
+      var top = new Chart(context).Pie(pieData);
+    })
+    </script>
+
+</head>
+
+    <%- include('header.ejs') %>
+
+    <body>
+
+<canvas id="top" width="400" height="400"></canvas>
+
+  </body>
+</html>
